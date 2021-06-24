@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
     @Get()
-    findAll() {
+    @HttpCode(200)
+    findAll(@Res() response) {
         return "Get all coffees";
     }
 
@@ -13,7 +14,17 @@ export class CoffeesController {
     }
 
     @Post()
-    createOrUpdate(@Body() body) {
+    create(@Body() body) {
         return body;
+    }
+
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() body) {
+        return `This action updates #${id} coffee`;
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return `This action removes #${id} coffee`;
     }
 }
