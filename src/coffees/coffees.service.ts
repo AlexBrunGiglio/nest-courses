@@ -3,39 +3,38 @@ import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {
-    private coffees: Coffee[] = [
-        {
-            id: 1,
-            brand: "Nespresso",
-            flavors: ['Caramel', 'Vanille'],
-            name: "Café allongé"
-        }
-    ];
+  private coffees: Coffee[] = [
+    {
+      id: 1,
+      brand: 'Nespresso',
+      flavors: ['Caramel', 'Vanille'],
+      name: 'Café allongé',
+    },
+  ];
 
-    findAll() {
-        return this.coffees;
-    }
+  findAll() {
+    return this.coffees;
+  }
 
-    findOne(id: string) {
-        return this.coffees.find(item => item.id === +id);
-    }
+  findOne(id: string) {
+    return this.coffees.find((item) => item.id === +id);
+  }
 
-    create(createCoffeeDto: any) {
-        this.coffees.push(createCoffeeDto);
-    }
+  create(createCoffeeDto: any) {
+    this.coffees.push(createCoffeeDto);
+  }
 
-    update(id: string, updateCoffeeDto: any) {
-        const existingCoffee = this.findOne(id);
-        if (existingCoffee) {
-            // update the existing entity
-        }
+  update(id: string, updateCoffeeDto: any) {
+    const existingCoffee = this.findOne(id);
+    if (existingCoffee) {
+      // update the existing entity
     }
+  }
 
-    remove(id: string) {
-        const coffeeIndex = this.coffees.findIndex(item => item.id === +id);
-        if (coffeeIndex >= 0) {
-            this.coffees.splice(coffeeIndex, 1);
-        }
+  remove(id: string) {
+    const coffeeIndex = this.coffees.findIndex((item) => item.id === +id);
+    if (coffeeIndex >= 0) {
+      this.coffees.splice(coffeeIndex, 1);
     }
+  }
 }
-
